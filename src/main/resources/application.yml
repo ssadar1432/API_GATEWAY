@@ -1,0 +1,24 @@
+server:
+  port: 8091
+spring :
+  application:
+         name: API_Gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+             - id: user-service-route
+               uri: lb://USERSERVICE # Using service discovery
+               predicates:
+                  - Path=/users/**
+             - id: hotel-service-route
+               uri: http://localhost:8082 # Direct URL if not using discovery
+               predicates:
+                 - Path=/hotel/**
+             - id: rating-service-route
+               uri: http://localhost:8085 # Direct URL if not using discovery
+               predicates:
+                 - Path=/rating/**
+
+

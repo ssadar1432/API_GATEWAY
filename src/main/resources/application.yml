@@ -15,9 +15,9 @@ spring :
              - id: hotel-service-route
                uri: http://localhost:8082 # Direct URL if not using discovery
                predicates:
-                 - Path=/hotel/**
+                 - Path=/hotel/**,/staff/**
              - id: rating-service-route
-               uri: http://localhost:8085 # Direct URL if not using discovery
+               uri: lb://RATINGSERVICE # Direct URL if not using discovery
                predicates:
                  - Path=/rating/**
 
